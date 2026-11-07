@@ -1,0 +1,262 @@
+{
+  "info": {
+    "_postman_id": "c2c83f1b-5e4d-499f-bb85-ea0192837465",
+    "name": "Laboratorio Semana 5 - Validación y Manejo de Errores (Israel Huamán)",
+    "description": "Colección completa de pruebas para el Laboratorio Semana 5:\n- Validación de entrada con @Valid, @NotBlank, @Positive, @Min\n- Uso de DTOs (ProductoDTO)\n- Manejo de excepciones centralizado con @RestControllerAdvice\n- Búsqueda por nombre y categoría (Actividad Semana 5)\n\nDesarrollado por: Israel Angel Huaman Huaman\nRepositorio: https://github.com/israelhuamanh/daw-projects",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Peticiones Válidas (Casos de Éxito)",
+      "item": [
+        {
+          "name": "1.1 Guardar Producto Válido (POST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Monitor Gamer ASUS 27 pulgadas\",\n  \"precio\": 320.50,\n  \"stock\": 15,\n  \"categoria\": \"Monitores\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/productos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "productos"]
+            }
+          }
+        },
+        {
+          "name": "1.2 Listar Todos los Productos (GET)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/productos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "productos"]
+            }
+          }
+        },
+        {
+          "name": "1.3 Obtener Producto por ID (GET)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/productos/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "productos", "1"]
+            }
+          }
+        },
+        {
+          "name": "1.4 Actualizar Producto Válido (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Monitor Gamer ASUS 27 pulgadas 165Hz\",\n  \"precio\": 350.00,\n  \"stock\": 20,\n  \"categoria\": \"Monitores\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/productos/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "productos", "1"]
+            }
+          }
+        },
+        {
+          "name": "1.5 Actividad - Buscar por Nombre (Query Param)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/productos/buscar?nombre=Monitor",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "productos", "buscar"],
+              "query": [
+                {
+                  "key": "nombre",
+                  "value": "Monitor"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "1.6 Actividad - Buscar por Nombre (Path Variable)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/productos/buscar/Monitor",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "productos", "buscar", "Monitor"]
+            }
+          }
+        },
+        {
+          "name": "1.7 Filtrar por Categoría (GET)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/productos/categoria/Monitores",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "productos", "categoria", "Monitores"]
+            }
+          }
+        },
+        {
+          "name": "1.8 Eliminar Producto (DELETE)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/productos/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "productos", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Pruebas de Validación y Errores (Casos Inválidos)",
+      "item": [
+        {
+          "name": "2.1 Error Validación - Nombre en Blanco (@NotBlank)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"\",\n  \"precio\": 150.0,\n  \"stock\": 10,\n  \"categoria\": \"Accesorios\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/productos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "productos"]
+            }
+          }
+        },
+        {
+          "name": "2.2 Error Validación - Precio Inválido (@Positive)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Teclado Mecánico RGB\",\n  \"precio\": -45.0,\n  \"stock\": 10,\n  \"categoria\": \"Periféricos\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/productos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "productos"]
+            }
+          }
+        },
+        {
+          "name": "2.3 Error Validación - Stock Negativo (@Min(0))",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Mouse Inalámbrico Logitech\",\n  \"precio\": 65.0,\n  \"stock\": -5,\n  \"categoria\": \"Periféricos\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/productos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "productos"]
+            }
+          }
+        },
+        {
+          "name": "2.4 Error Validación - Categoría Vacía (@NotBlank)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Webcam Full HD\",\n  \"precio\": 90.0,\n  \"stock\": 8,\n  \"categoria\": \"\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/productos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "productos"]
+            }
+          }
+        },
+        {
+          "name": "2.5 Error 404 - Producto No Encontrado",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/productos/9999",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "productos", "9999"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

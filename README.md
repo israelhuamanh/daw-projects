@@ -13,6 +13,7 @@
 |---|---|---|---|
 | **Semana 4** | Implementación de Persistencia con Spring Boot y Hibernate (`@OneToMany`, `@OneToOne`, `@ManyToMany`) | [Ver Proyecto Semana 4](./semana-4/) | [Informe Word](./semana-4/GLAB-S04-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-4/README.md) |
 | **Semana 5** | Validación y Manejo de Errores en APIs con Spring Boot (`@Valid`, DTOs, `@RestControllerAdvice`) | [Ver Proyecto Semana 5](./semana-5/) | [Informe Word](./semana-5/GLAB-S05-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-5/README.md) |
+| **Semana 9** | Implementación de Seguridad JWT y Autenticación en APIs REST con Spring Boot y Spring Security 6 | [Ver Proyecto Semana 9](./semana-9/) | [Informe Word](./semana-9/GLAB-S09-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-9/README.md) |
 
 ---
 
@@ -35,3 +36,17 @@
 - Respuestas exhaustivas al cuestionario conceptual (DTO vs Entidad, `@Valid`, `@RestControllerAdvice`, `@Autowired`, diferencias entre `save`, `findById`, `findAll`).
 - Colección completa de Postman: [`semana-5/postman_collection.json`](./semana-5/postman_collection.json).
 - Documento oficial Word (.docx): [`semana-5/GLAB-S05-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx`](./semana-5/GLAB-S05-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx).
+
+#### 📌 Semana 9: Seguridad JWT y Autenticación por Roles
+- API REST con Spring Boot 3, Spring Security 6 y JJWT (`io.jsonwebtoken 0.11.5`).
+- Autenticación Stateless con Bearer Token firmado por HMAC-SHA256 y encriptación de claves con BCrypt.
+- Filtro `JwtAuthFilter` y configuración de seguridad basada en roles (RBAC) con `SecurityFilterChain`.
+- **Resolución de los 6 Casos de Análisis:**
+  - Caso 1: Ruta pública (`/api/test/all`).
+  - Caso 2: Acceso sin token (`401 Unauthorized`).
+  - Caso 3: Token alterado o inválido (`401 Unauthorized`).
+  - Caso 4: Acceso exitoso con token válido de usuario (`200 OK`).
+  - Caso 5: Acceso a ruta ADMIN con rol USER (`403 Forbidden`).
+  - Caso 6: Acceso a ruta ADMIN con rol ADMIN (`200 OK`).
+- Colección completa de Postman: [`semana-9/postman_collection.json`](./semana-9/postman_collection.json).
+- Documento oficial Word (.docx): [`semana-9/GLAB-S09-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx`](./semana-9/GLAB-S09-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx).

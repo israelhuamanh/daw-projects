@@ -14,6 +14,7 @@
 | **Semana 4** | Implementación de Persistencia con Spring Boot y Hibernate (`@OneToMany`, `@OneToOne`, `@ManyToMany`) | [Ver Proyecto Semana 4](./semana-4/) | [Informe Word](./semana-4/GLAB-S04-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-4/README.md) |
 | **Semana 5** | Validación y Manejo de Errores en APIs con Spring Boot (`@Valid`, DTOs, `@RestControllerAdvice`) | [Ver Proyecto Semana 5](./semana-5/) | [Informe Word](./semana-5/GLAB-S05-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-5/README.md) |
 | **Semana 9** | Implementación de Seguridad JWT y Autenticación en APIs REST con Spring Boot y Spring Security 6 | [Ver Proyecto Semana 9](./semana-9/) | [Informe Word](./semana-9/GLAB-S09-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-9/README.md) |
+| **Semana 10** | Configuración de Perfiles y Gestión de Ambientes en Spring Boot (`dev`, `qa`, `test`, `prod`) | [Ver Proyecto Semana 10](./semana-10/) | [Informe Word](./semana-10/GLAB-S10-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-10/README.md) |
 
 ---
 
@@ -50,3 +51,17 @@
   - Caso 6: Acceso a ruta ADMIN con rol ADMIN (`200 OK`).
 - Colección completa de Postman: [`semana-9/postman_collection.json`](./semana-9/postman_collection.json).
 - Documento oficial Word (.docx): [`semana-9/GLAB-S09-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx`](./semana-9/GLAB-S09-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx).
+
+#### 📌 Semana 10: Configuración de Perfiles y Ambientes (TechSolutions SAC)
+- API REST con Spring Boot 3, Spring Data JPA y soporte para perfiles desacoplados.
+- Arquitectura de 4 ambientes estandarizados:
+  - **dev:** Puerto 8080, Base de datos `empleados_dev`.
+  - **qa:** Puerto 8082, Base de datos `empleados_qa`.
+  - **test:** Puerto 8081, Base de datos `empleados_test`.
+  - **prod:** Puerto 8083, Base de datos `empleados_prod`.
+- Endpoints de diagnóstico y operación:
+  - `GET /configuracion`: JSON con `{ambiente, perfil, puerto, baseDatos}`.
+  - `GET /config`: Diagnóstico rápido de variables de entorno y perfiles activos.
+  - CRUD completo `/api/empleados` (`POST`, `GET`, `GET /{id}`, `PUT /{id}`, `DELETE /{id}`).
+- Colección completa de Postman: [`semana-10/postman_collection.json`](./semana-10/postman_collection.json).
+- Documento oficial Word (.docx): [`semana-10/GLAB-S10-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx`](./semana-10/GLAB-S10-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx).

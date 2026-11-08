@@ -1,0 +1,178 @@
+{
+  "info": {
+    "_postman_id": "e4e05b3d-7a6f-422b-dd07-ec2314059687",
+    "name": "Laboratorio Semana 10 - Spring Profiles y Ambientes (Israel Huamán)",
+    "description": "Colección completa para el Laboratorio Semana 10:\n- Gestión de Ambientes (DEV: 8080, QA: 8082, TEST: 8081, PROD: 8083)\n- Inyección de variables de entorno (PROFILE_ACTIVE, DB_URL, SERVER_PORT)\n- Endpoint GET /configuracion\n- CRUD REST de Empleados (TechSolutions SAC)\n\nDesarrollado por: Israel Angel Huaman Huaman\nRepositorio: https://github.com/israelhuamanh/daw-projects",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Verificación de Ambientes (/configuracion)",
+      "item": [
+        {
+          "name": "1.1 Ambiente DESARROLLO (dev - Puerto 8080)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/configuracion",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["configuracion"]
+            }
+          }
+        },
+        {
+          "name": "1.2 Ambiente CALIDAD (qa - Puerto 8082)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/configuracion",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8082",
+              "path": ["configuracion"]
+            }
+          }
+        },
+        {
+          "name": "1.3 Ambiente PRUEBAS (test - Puerto 8081)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8081/configuracion",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8081",
+              "path": ["configuracion"]
+            }
+          }
+        },
+        {
+          "name": "1.4 Ambiente PRODUCCION (prod - Puerto 8083)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8083/configuracion",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8083",
+              "path": ["configuracion"]
+            }
+          }
+        },
+        {
+          "name": "1.5 Endpoint Simple de Verificación (/config)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/config",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["config"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. CRUD REST de Empleados (TechSolutions SAC)",
+      "item": [
+        {
+          "name": "2.1 Registrar Empleado (POST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombres\": \"Israel Angel\",\n  \"apellidos\": \"Huaman Huaman\",\n  \"email\": \"israel.huaman@techsolutions.com\",\n  \"sueldo\": 4500.00\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/empleados",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "empleados"]
+            }
+          }
+        },
+        {
+          "name": "2.2 Listar Empleados (GET)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/empleados",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "empleados"]
+            }
+          }
+        },
+        {
+          "name": "2.3 Obtener Empleado por ID (GET)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/empleados/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "empleados", "1"]
+            }
+          }
+        },
+        {
+          "name": "2.4 Actualizar Empleado (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombres\": \"Israel Angel\",\n  \"apellidos\": \"Huaman Huaman\",\n  \"email\": \"israel.huaman@techsolutions.com\",\n  \"sueldo\": 5200.00\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/empleados/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "empleados", "1"]
+            }
+          }
+        },
+        {
+          "name": "2.5 Eliminar Empleado (DELETE)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/empleados/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "empleados", "1"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

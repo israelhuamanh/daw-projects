@@ -1,0 +1,18 @@
+server:
+  port: 9087
+
+spring:
+  application:
+    name: cita-service
+  datasource:
+    url: jdbc:mysql://servidor:3306/bd_cita?createDatabaseIfNotExist=true&useSSL=false
+    username: root
+    password: 
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+empresa:
+  ambiente: produccion

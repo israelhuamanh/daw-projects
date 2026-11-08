@@ -15,6 +15,7 @@
 | **Semana 5** | Validación y Manejo de Errores en APIs con Spring Boot (`@Valid`, DTOs, `@RestControllerAdvice`) | [Ver Proyecto Semana 5](./semana-5/) | [Informe Word](./semana-5/GLAB-S05-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-5/README.md) |
 | **Semana 9** | Implementación de Seguridad JWT y Autenticación en APIs REST con Spring Boot y Spring Security 6 | [Ver Proyecto Semana 9](./semana-9/) | [Informe Word](./semana-9/GLAB-S09-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-9/README.md) |
 | **Semana 10** | Configuración de Perfiles y Gestión de Ambientes en Spring Boot (`dev`, `qa`, `test`, `prod`) | [Ver Proyecto Semana 10](./semana-10/) | [Informe Word](./semana-10/GLAB-S10-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-10/README.md) |
+| **Semana 11** | Arquitectura de Microservicios con Spring Boot y YAML (Tienda y Clínica Salud Integral) | [Ver Proyecto Semana 11](./semana-11/) | [Informe Word](./semana-11/GLAB-S11-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-11/README.md) |
 
 ---
 
@@ -65,3 +66,17 @@
   - CRUD completo `/api/empleados` (`POST`, `GET`, `GET /{id}`, `PUT /{id}`, `DELETE /{id}`).
 - Colección completa de Postman: [`semana-10/postman_collection.json`](./semana-10/postman_collection.json).
 - Documento oficial Word (.docx): [`semana-10/GLAB-S10-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx`](./semana-10/GLAB-S10-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx).
+
+#### 📌 Semana 11: Creación de Microservicios con Spring Boot y YAML
+- Arquitectura distribuida con patrón **Database per Service** y configuración en **YAML** con perfiles desacoplados (`dev` y `prod`).
+- **Módulo Tienda / E-Commerce (4 Microservicios):**
+  - `categoria-service` (Puerto 8082 dev / 9092 prod, BD `bd_categoria_dev`).
+  - `cliente-service` (Puerto 8081 dev / 9081 prod, BD `bd_cliente_dev`).
+  - `producto-service` (Puerto 8083 dev / 9083 prod, BD `bd_producto_dev`).
+  - `pedido-service` (Puerto 8084 dev / 9084 prod, BD `bd_pedido_dev`, relación `@OneToMany` en cascada).
+- **Módulo Clínica Salud Integral - Actividad (3 Microservicios):**
+  - `paciente-service` (Puerto 8085 dev / 9085 prod, BD `bd_paciente_dev`).
+  - `medico-service` (Puerto 8086 dev / 9086 prod, BD `bd_medico_dev`, gestión de especialidades, médicos y horarios).
+  - `cita-service` (Puerto 8087 dev / 9087 prod, BD `bd_cita_dev`, máquina de estados: `PROGRAMADA`, `CONFIRMADA`, `ATENDIDA`, `CANCELADA`, y registro de atenciones).
+- Colección completa de Postman: [`semana-11/postman_collection.json`](./semana-11/postman_collection.json).
+- Documento oficial Word (.docx): [`semana-11/GLAB-S11-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx`](./semana-11/GLAB-S11-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx).

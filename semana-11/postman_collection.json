@@ -1,0 +1,357 @@
+{
+  "info": {
+    "name": "DAWA - Semana 11: Microservicios Spring Boot (Tienda & Clinica Salud Integral)",
+    "description": "Colecci\u00f3n completa de endpoints para los 7 microservicios de la Semana 11 por Israel Angel Huaman Huaman",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01. Categoria Service (8082)",
+      "item": [
+        {
+          "name": "GET /api/categorias - Listar Categorias",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8082/api/categorias"
+          }
+        },
+        {
+          "name": "POST /api/categorias - Crear Categoria",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Laptops\",\n  \"estado\": \"ACTIVO\"\n}"
+            },
+            "url": "http://localhost:8082/api/categorias"
+          }
+        },
+        {
+          "name": "GET /api/categorias/{id} - Obtener por ID",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8082/api/categorias/1"
+          }
+        },
+        {
+          "name": "PUT /api/categorias/{id} - Actualizar Categoria",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Laptops & Ultrabooks\",\n  \"estado\": \"ACTIVO\"\n}"
+            },
+            "url": "http://localhost:8082/api/categorias/1"
+          }
+        },
+        {
+          "name": "DELETE /api/categorias/{id} - Eliminar Categoria",
+          "request": {
+            "method": "DELETE",
+            "url": "http://localhost:8082/api/categorias/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "02. Cliente Service (8081)",
+      "item": [
+        {
+          "name": "GET /api/clientes - Listar Clientes",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8081/api/clientes"
+          }
+        },
+        {
+          "name": "POST /api/clientes - Registrar Cliente",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Juan\",\n  \"apellidos\": \"P\\u00e9rez G\\u00f3mez\",\n  \"direccion\": \"Av. Javier Prado 123, Lima\",\n  \"telefono\": \"987654321\",\n  \"nroDni\": \"12345678\",\n  \"estado\": \"ACTIVO\"\n}"
+            },
+            "url": "http://localhost:8081/api/clientes"
+          }
+        },
+        {
+          "name": "GET /api/clientes/{id} - Buscar por ID",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8081/api/clientes/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "03. Producto Service (8083)",
+      "item": [
+        {
+          "name": "GET /api/productos - Listar Productos",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8083/api/productos"
+          }
+        },
+        {
+          "name": "POST /api/productos - Registrar Producto",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Laptop Lenovo ThinkPad\",\n  \"precio\": 3500.0,\n  \"stock\": 15,\n  \"categoriaId\": 1\n}"
+            },
+            "url": "http://localhost:8083/api/productos"
+          }
+        },
+        {
+          "name": "GET /api/productos/categoria/{categoriaId} - Por Categoria",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8083/api/productos/categoria/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "04. Pedido Service (8084)",
+      "item": [
+        {
+          "name": "GET /api/pedidos - Listar Pedidos",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8084/api/pedidos"
+          }
+        },
+        {
+          "name": "POST /api/pedidos - Crear Pedido con Detalles",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fecha\": \"2026-06-10\",\n  \"idCliente\": 1,\n  \"total\": 3679.8,\n  \"detalles\": [\n    {\n      \"idProducto\": 1,\n      \"cantidad\": 1,\n      \"precio\": 3500.0\n    },\n    {\n      \"idProducto\": 2,\n      \"cantidad\": 2,\n      \"precio\": 89.9\n    }\n  ]\n}"
+            },
+            "url": "http://localhost:8084/api/pedidos"
+          }
+        },
+        {
+          "name": "GET /api/pedidos/{id} - Obtener Pedido",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8084/api/pedidos/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "05. Paciente Service - Clinica (8085)",
+      "item": [
+        {
+          "name": "GET /api/pacientes - Listar Pacientes",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8085/api/pacientes"
+          }
+        },
+        {
+          "name": "POST /api/pacientes - Registrar Paciente",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dni\": \"47852196\",\n  \"nombres\": \"Carlos Alberto\",\n  \"apellidos\": \"Mendoza Quispe\",\n  \"fechaNacimiento\": \"1990-05-14\",\n  \"sexo\": \"M\",\n  \"telefono\": \"987112233\",\n  \"direccion\": \"Av. Arequipa 1250, Lince\",\n  \"correo\": \"carlos.mendoza@email.com\",\n  \"estado\": \"A\"\n}"
+            },
+            "url": "http://localhost:8085/api/pacientes"
+          }
+        },
+        {
+          "name": "GET /api/pacientes/{id} - Buscar por ID",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8085/api/pacientes/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "06. Medico Service - Clinica (8086)",
+      "item": [
+        {
+          "name": "GET /api/especialidades - Listar Especialidades",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8086/api/especialidades"
+          }
+        },
+        {
+          "name": "POST /api/especialidades - Crear Especialidad",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Cardiolog\\u00eda\",\n  \"descripcion\": \"Prevenci\\u00f3n y tratamiento cardiovascular\",\n  \"estado\": \"A\"\n}"
+            },
+            "url": "http://localhost:8086/api/especialidades"
+          }
+        },
+        {
+          "name": "GET /api/medicos - Listar Medicos",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8086/api/medicos"
+          }
+        },
+        {
+          "name": "POST /api/medicos - Registrar Medico",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cmp\": \"CMP-58471\",\n  \"nombres\": \"Alejandro\",\n  \"apellidos\": \"Vargas Salazar\",\n  \"telefono\": \"998877665\",\n  \"correo\": \"alejandro.vargas@saludintegral.pe\",\n  \"idEspecialidad\": 1,\n  \"estado\": \"A\"\n}"
+            },
+            "url": "http://localhost:8086/api/medicos"
+          }
+        },
+        {
+          "name": "POST /api/medicos/{id}/horarios - Registrar Horario",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"diaSemana\": \"LUNES\",\n  \"horaInicio\": \"08:00:00\",\n  \"horaFin\": \"14:00:00\"\n}"
+            },
+            "url": "http://localhost:8086/api/medicos/1/horarios"
+          }
+        },
+        {
+          "name": "GET /api/medicos/{id}/horarios - Listar Horarios del Medico",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8086/api/medicos/1/horarios"
+          }
+        }
+      ]
+    },
+    {
+      "name": "07. Cita Service - Clinica (8087)",
+      "item": [
+        {
+          "name": "GET /api/citas - Listar Citas",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8087/api/citas"
+          }
+        },
+        {
+          "name": "POST /api/citas - Registrar Cita Medica",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fecha\": \"2026-06-15\",\n  \"hora\": \"09:00:00\",\n  \"idPaciente\": 1,\n  \"idMedico\": 1,\n  \"motivo\": \"Evaluaci\\u00f3n m\\u00e9dica general y chequeo cardiol\\u00f3gico\"\n}"
+            },
+            "url": "http://localhost:8087/api/citas"
+          }
+        },
+        {
+          "name": "PUT /api/citas/{id}/estado - Confirmar Cita",
+          "request": {
+            "method": "PUT",
+            "url": "http://localhost:8087/api/citas/1/estado?nuevoEstado=CONFIRMADA"
+          }
+        },
+        {
+          "name": "POST /api/citas/{id}/atencion - Registrar Atencion Medica",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"diagnostico\": \"Presi\\u00f3n arterial normal con leve fatiga postural.\",\n  \"tratamiento\": \"Hidrataci\\u00f3n adecuada, dieta baja en sodio y control en 6 meses.\",\n  \"observaciones\": \"Paciente colaborador en buen estado general.\"\n}"
+            },
+            "url": "http://localhost:8087/api/citas/1/atencion"
+          }
+        },
+        {
+          "name": "GET /api/citas/{id}/atencion - Consultar Atencion Realizada",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8087/api/citas/1/atencion"
+          }
+        },
+        {
+          "name": "PUT /api/citas/{id}/cancelar - Cancelar Cita",
+          "request": {
+            "method": "PUT",
+            "url": "http://localhost:8087/api/citas/1/cancelar"
+          }
+        }
+      ]
+    }
+  ]
+}

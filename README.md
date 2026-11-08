@@ -16,6 +16,7 @@
 | **Semana 9** | Implementación de Seguridad JWT y Autenticación en APIs REST con Spring Boot y Spring Security 6 | [Ver Proyecto Semana 9](./semana-9/) | [Informe Word](./semana-9/GLAB-S09-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-9/README.md) |
 | **Semana 10** | Configuración de Perfiles y Gestión de Ambientes en Spring Boot (`dev`, `qa`, `test`, `prod`) | [Ver Proyecto Semana 10](./semana-10/) | [Informe Word](./semana-10/GLAB-S10-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-10/README.md) |
 | **Semana 11** | Arquitectura de Microservicios con Spring Boot y YAML (Tienda y Clínica Salud Integral) | [Ver Proyecto Semana 11](./semana-11/) | [Informe Word](./semana-11/GLAB-S11-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-11/README.md) |
+| **Semana 12** | Comunicación entre Microservicios con OpenFeign y Eureka Server (`categoria`, `producto`, `cliente`, `pedido`) | [Ver Proyecto Semana 12](./semana-12/) | [Informe Word](./semana-12/GLAB-S12-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-12/README.md) |
 
 ---
 
@@ -80,3 +81,13 @@
   - `cita-service` (Puerto 8087 dev / 9087 prod, BD `bd_cita_dev`, máquina de estados: `PROGRAMADA`, `CONFIRMADA`, `ATENDIDA`, `CANCELADA`, y registro de atenciones).
 - Colección completa de Postman: [`semana-11/postman_collection.json`](./semana-11/postman_collection.json).
 - Documento oficial Word (.docx): [`semana-11/GLAB-S11-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx`](./semana-11/GLAB-S11-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx).
+
+#### 📌 Semana 12: Comunicación entre Microservicios con OpenFeign y Eureka Server
+- Ecosistema distribuido Spring Cloud desplegado sobre la base **`microservicios`**:
+  - `eureka-server` (Puerto 8761): Service Registry y Dashboard visual.
+  - `categoria-service` (Puerto 8082): Catálogo de categorías con registro en Eureka.
+  - `producto-service` (Puerto 8083): Cliente Feign `CategoriaClient` para enriquecer productos con información de categoría en tiempo de ejecución.
+  - `cliente-service` (Puerto 8081 - Actividad): Gestión de clientes con validación estricta de DNI de 8 dígitos y registro en Eureka.
+  - `pedido-service` (Puerto 8084 - Actividad): Integración con `ClienteClient` y `ProductoClient` vía OpenFeign, sin duplicación de datos en base de datos (`bd_pedido_dev`), agregación de payloads y anulación lógica de pedidos.
+- Colección completa de Postman: [`semana-12/postman_collection.json`](./semana-12/postman_collection.json).
+- Documento oficial Word (.docx): [`semana-12/GLAB-S12-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx`](./semana-12/GLAB-S12-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx).

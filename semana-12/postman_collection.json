@@ -1,0 +1,185 @@
+{
+  "info": {
+    "name": "DAWA - Semana 12: Microservicios Eureka y OpenFeign",
+    "description": "Colecci\u00f3n completa para Eureka Server, Categoria, Producto, Cliente y Pedido con comunicaci\u00f3n OpenFeign por Israel Angel Huaman Huaman",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "00. Eureka Server (8761)",
+      "item": [
+        {
+          "name": "GET Eureka Apps Registry",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "http://localhost:8761/eureka/apps"
+          }
+        }
+      ]
+    },
+    {
+      "name": "01. Categoria Service (8082)",
+      "item": [
+        {
+          "name": "GET /api/categorias - Listar Categorias",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8082/api/categorias"
+          }
+        },
+        {
+          "name": "POST /api/categorias - Crear Categoria",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Tecnolog\\u00eda\",\n  \"estado\": \"ACTIVO\"\n}"
+            },
+            "url": "http://localhost:8082/api/categorias"
+          }
+        },
+        {
+          "name": "GET /api/categorias/{id} - Obtener Categoria por ID",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8082/api/categorias/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "02. Producto Service (8083)",
+      "item": [
+        {
+          "name": "GET /api/productos - Listar Productos con Feign Categoria",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8083/api/productos"
+          }
+        },
+        {
+          "name": "POST /api/productos - Crear Producto",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Laptop\",\n  \"precio\": 2500,\n  \"stock\": 10,\n  \"categoriaId\": 1\n}"
+            },
+            "url": "http://localhost:8083/api/productos"
+          }
+        },
+        {
+          "name": "GET /api/productos/{id} - Obtener Producto por ID con Feign",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8083/api/productos/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "03. Cliente Service - Actividad (8081)",
+      "item": [
+        {
+          "name": "GET /api/clientes - Listar Clientes",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8081/api/clientes"
+          }
+        },
+        {
+          "name": "POST /api/clientes - Registrar Cliente con DNI 8 digitos",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Carlos\",\n  \"apellidos\": \"Ramirez\",\n  \"direccion\": \"Av. La Marina 2500, San Miguel\",\n  \"telefono\": \"987654321\",\n  \"nroDni\": \"12345678\",\n  \"estado\": \"ACTIVO\"\n}"
+            },
+            "url": "http://localhost:8081/api/clientes"
+          }
+        },
+        {
+          "name": "GET /api/clientes/{id} - Obtener Cliente por ID",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8081/api/clientes/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "04. Pedido Service - Actividad (8084)",
+      "item": [
+        {
+          "name": "POST /api/pedidos - Registrar Pedido (valida y calcula total)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clienteId\": 1,\n  \"productoId\": 1,\n  \"cantidad\": 2\n}"
+            },
+            "url": "http://localhost:8084/api/pedidos"
+          }
+        },
+        {
+          "name": "GET /api/pedidos/{id} - Consultar Pedido con Feign Cliente y Producto",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8084/api/pedidos/1"
+          }
+        },
+        {
+          "name": "GET /api/pedidos - Listar todos los Pedidos",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8084/api/pedidos"
+          }
+        },
+        {
+          "name": "PUT /api/pedidos/{id}/estado - Actualizar a ATENDIDO",
+          "request": {
+            "method": "PUT",
+            "url": "http://localhost:8084/api/pedidos/1/estado?nuevoEstado=ATENDIDO"
+          }
+        },
+        {
+          "name": "PUT /api/pedidos/{id}/anular - Anulaci\u00f3n L\u00f3gica de Pedido",
+          "request": {
+            "method": "PUT",
+            "url": "http://localhost:8084/api/pedidos/1/anular"
+          }
+        }
+      ]
+    }
+  ]
+}

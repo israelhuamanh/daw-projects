@@ -1,0 +1,24 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: pedido-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/bd_pedido_dev?createDatabaseIfNotExist=true&useSSL=false
+    username: root
+    password: 
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+empresa:
+  ambiente: desarrollo
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka

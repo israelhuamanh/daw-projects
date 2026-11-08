@@ -1,0 +1,204 @@
+{
+  "info": {
+    "name": "DAWA - Semana 13: Service Discovery y API Gateway",
+    "description": "Colecci\u00f3n completa para API Gateway (Puerto 8080), Eureka Server (8761) y microservicios ruteados din\u00e1micamente por Israel Angel Huaman Huaman",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "00. Eureka Server (8761)",
+      "item": [
+        {
+          "name": "GET Eureka Apps Registry",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "http://localhost:8761/eureka/apps"
+          }
+        }
+      ]
+    },
+    {
+      "name": "01. Gateway Actuator (8080)",
+      "item": [
+        {
+          "name": "GET /actuator/gateway/routes - Ver Rutas Registradas en Gateway",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8080/actuator/gateway/routes"
+          }
+        },
+        {
+          "name": "GET /actuator/health - Estado de Salud del Gateway",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8080/actuator/health"
+          }
+        }
+      ]
+    },
+    {
+      "name": "02. Gateway -> Categoria Service (8080 /api/categorias)",
+      "item": [
+        {
+          "name": "GET /api/categorias - Listar Categorias via Gateway",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/categorias"
+          }
+        },
+        {
+          "name": "POST /api/categorias - Registrar Categoria via Gateway",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Tecnolog\\u00eda\",\n  \"estado\": \"ACTIVO\"\n}"
+            },
+            "url": "http://localhost:8080/api/categorias"
+          }
+        },
+        {
+          "name": "GET /api/categorias/{id} - Obtener por ID via Gateway",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/categorias/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "03. Gateway -> Producto Service (8080 /api/productos)",
+      "item": [
+        {
+          "name": "GET /api/productos - Listar Productos via Gateway",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/productos"
+          }
+        },
+        {
+          "name": "POST /api/productos - Crear Producto via Gateway",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Laptop HP Pavilion Gaming\",\n  \"precio\": 3200.0,\n  \"stock\": 12,\n  \"categoriaId\": 1\n}"
+            },
+            "url": "http://localhost:8080/api/productos"
+          }
+        },
+        {
+          "name": "GET /api/productos/{id} - Consultar Producto por ID via Gateway",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/productos/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "04. Gateway -> Cliente Service (8080 /api/clientes - Actividad)",
+      "item": [
+        {
+          "name": "GET /api/clientes - Listar Clientes via Gateway",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/clientes"
+          }
+        },
+        {
+          "name": "POST /api/clientes - Registrar Cliente con DNI 8 digitos via Gateway",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Carlos\",\n  \"apellidos\": \"Ramirez\",\n  \"direccion\": \"Av. La Marina 2500, San Miguel\",\n  \"telefono\": \"987654321\",\n  \"nroDni\": \"12345678\",\n  \"estado\": \"ACTIVO\"\n}"
+            },
+            "url": "http://localhost:8080/api/clientes"
+          }
+        },
+        {
+          "name": "GET /api/clientes/{id} - Buscar Cliente por ID via Gateway",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/clientes/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "05. Gateway -> Pedido Service (8080 /api/pedidos - Actividad)",
+      "item": [
+        {
+          "name": "POST /api/pedidos - Registrar Pedido via Gateway",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clienteId\": 1,\n  \"productoId\": 1,\n  \"cantidad\": 2\n}"
+            },
+            "url": "http://localhost:8080/api/pedidos"
+          }
+        },
+        {
+          "name": "GET /api/pedidos/{id} - Obtener Pedido con Enriquecimiento Feign via Gateway",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/pedidos/1"
+          }
+        },
+        {
+          "name": "GET /api/pedidos - Listar Pedidos via Gateway",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/pedidos"
+          }
+        },
+        {
+          "name": "PUT /api/pedidos/{id}/estado - Actualizar Estado via Gateway",
+          "request": {
+            "method": "PUT",
+            "url": "http://localhost:8080/api/pedidos/1/estado?nuevoEstado=ATENDIDO"
+          }
+        },
+        {
+          "name": "PUT /api/pedidos/{id}/anular - Anulaci\u00f3n L\u00f3gica via Gateway",
+          "request": {
+            "method": "PUT",
+            "url": "http://localhost:8080/api/pedidos/1/anular"
+          }
+        }
+      ]
+    }
+  ]
+}

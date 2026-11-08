@@ -1,0 +1,59 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway-service
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+      routes:
+        # Procedimiento: Ruta a categoria-service
+        - id: categoria-service
+          uri: lb://categoria-service
+          predicates:
+            - Path=/api/categorias/**
+
+        # Procedimiento: Ruta a producto-service
+        - id: producto-service
+          uri: lb://producto-service
+          predicates:
+            - Path=/api/productos/**
+
+        # Actividad: Publicar cliente-service mediante el Gateway
+        - id: cliente-service
+          uri: lb://cliente-service
+          predicates:
+            - Path=/api/clientes/**
+
+        # Actividad: Publicar pedido-service mediante el Gateway
+        - id: pedido-service
+          uri: lb://pedido-service
+          predicates:
+            - Path=/api/pedidos/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+  endpoint:
+    gateway:
+      enabled: true
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.loadbalancer: DEBUG
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka

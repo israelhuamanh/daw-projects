@@ -17,6 +17,7 @@
 | **Semana 10** | Configuración de Perfiles y Gestión de Ambientes en Spring Boot (`dev`, `qa`, `test`, `prod`) | [Ver Proyecto Semana 10](./semana-10/) | [Informe Word](./semana-10/GLAB-S10-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-10/README.md) |
 | **Semana 11** | Arquitectura de Microservicios con Spring Boot y YAML (Tienda y Clínica Salud Integral) | [Ver Proyecto Semana 11](./semana-11/) | [Informe Word](./semana-11/GLAB-S11-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-11/README.md) |
 | **Semana 12** | Comunicación entre Microservicios con OpenFeign y Eureka Server (`categoria`, `producto`, `cliente`, `pedido`) | [Ver Proyecto Semana 12](./semana-12/) | [Informe Word](./semana-12/GLAB-S12-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-12/README.md) |
+| **Semana 13** | Service Discovery y API Gateway con Spring Cloud Gateway y Eureka (`gateway-service`, `lb://`) | [Ver Proyecto Semana 13](./semana-13/) | [Informe Word](./semana-13/GLAB-S13-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-13/README.md) |
 
 ---
 
@@ -91,3 +92,12 @@
   - `pedido-service` (Puerto 8084 - Actividad): Integración con `ClienteClient` y `ProductoClient` vía OpenFeign, sin duplicación de datos en base de datos (`bd_pedido_dev`), agregación de payloads y anulación lógica de pedidos.
 - Colección completa de Postman: [`semana-12/postman_collection.json`](./semana-12/postman_collection.json).
 - Documento oficial Word (.docx): [`semana-12/GLAB-S12-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx`](./semana-12/GLAB-S12-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx).
+
+#### 📌 Semana 13: Service Discovery y API Gateway con Spring Cloud Gateway
+- Puerta de enlace unificada (**API Gateway**) en el puerto `8080` con Spring Cloud Gateway y LoadBalancer:
+  - `gateway-service` (Puerto 8080): Punto único de entrada para clientes externos con ruteo dinámico basado en prefijos de balanceo `lb://` hacia los microservicios registrados en Eureka (`8761`).
+  - **Procedimiento:** Publicación y balanceo hacia `categoria-service` (`/api/categorias/**`) y `producto-service` (`/api/productos/**`).
+  - **Actividad:** Publicación y balanceo hacia `cliente-service` (`/api/clientes/**`) y `pedido-service` (`/api/pedidos/**`), completando la plataforma e-commerce bajo un solo host y puerto público.
+  - Diagnóstico perimetral con Actuator: `/actuator/gateway/routes` y `/actuator/health`.
+- Colección completa de Postman: [`semana-13/postman_collection.json`](./semana-13/postman_collection.json).
+- Documento oficial Word (.docx): [`semana-13/GLAB-S13-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx`](./semana-13/GLAB-S13-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx).

@@ -1,0 +1,155 @@
+{
+  "info": {
+    "name": "DAWA - Semana 14: Config Server y Resiliencia (Resilience4j)",
+    "description": "Colecci\u00f3n de pruebas para Config Server (8888), Eureka (8761), Circuit Breaker, Retry y Bulkhead por Israel Angel Huaman Huaman",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01. Config Server (8888)",
+      "item": [
+        {
+          "name": "GET categoria-service (default)",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8888/categoria-service/default"
+          }
+        },
+        {
+          "name": "GET categoria-service (dev)",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8888/categoria-service/dev"
+          }
+        },
+        {
+          "name": "GET producto-service (dev)",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8888/producto-service/dev"
+          }
+        },
+        {
+          "name": "GET cliente-service (dev)",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8888/cliente-service/dev"
+          }
+        },
+        {
+          "name": "GET pedido-service (dev)",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8888/pedido-service/dev"
+          }
+        }
+      ]
+    },
+    {
+      "name": "02. Categoria y Producto (Circuit Breaker + Retry + Bulkhead)",
+      "item": [
+        {
+          "name": "POST /api/categorias",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Tecnolog\\u00eda\",\n  \"estado\": \"ACTIVO\"\n}"
+            },
+            "url": "http://localhost:8082/api/categorias"
+          }
+        },
+        {
+          "name": "POST /api/productos",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Laptop\",\n  \"precio\": 2500,\n  \"stock\": 10,\n  \"categoriaId\": 1\n}"
+            },
+            "url": "http://localhost:8083/api/productos"
+          }
+        },
+        {
+          "name": "GET /api/productos (Normal / Fallback)",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8083/api/productos"
+          }
+        },
+        {
+          "name": "GET /actuator/circuitbreakers (producto-service)",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8083/actuator/circuitbreakers"
+          }
+        }
+      ]
+    },
+    {
+      "name": "03. Cliente y Pedido (Actividad Resiliencia)",
+      "item": [
+        {
+          "name": "POST /api/clientes",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Carlos\",\n  \"apellidos\": \"Ramirez\",\n  \"direccion\": \"Av. La Marina 2500, San Miguel\",\n  \"telefono\": \"987654321\",\n  \"nroDni\": \"12345678\",\n  \"estado\": \"ACTIVO\"\n}"
+            },
+            "url": "http://localhost:8081/api/clientes"
+          }
+        },
+        {
+          "name": "POST /api/pedidos",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clienteId\": 1,\n  \"productoId\": 1,\n  \"cantidad\": 2\n}"
+            },
+            "url": "http://localhost:8084/api/pedidos"
+          }
+        },
+        {
+          "name": "GET /api/pedidos (Normal / Fallback / Retry / Bulkhead)",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8084/api/pedidos"
+          }
+        },
+        {
+          "name": "GET /actuator/circuitbreakers (pedido-service)",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8084/actuator/circuitbreakers"
+          }
+        }
+      ]
+    }
+  ]
+}

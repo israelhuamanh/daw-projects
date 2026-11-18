@@ -18,6 +18,7 @@
 | **Semana 11** | Arquitectura de Microservicios con Spring Boot y YAML (Tienda y Clínica Salud Integral) | [Ver Proyecto Semana 11](./semana-11/) | [Informe Word](./semana-11/GLAB-S11-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-11/README.md) |
 | **Semana 12** | Comunicación entre Microservicios con OpenFeign y Eureka Server (`categoria`, `producto`, `cliente`, `pedido`) | [Ver Proyecto Semana 12](./semana-12/) | [Informe Word](./semana-12/GLAB-S12-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-12/README.md) |
 | **Semana 13** | Service Discovery y API Gateway con Spring Cloud Gateway y Eureka (`gateway-service`, `lb://`) | [Ver Proyecto Semana 13](./semana-13/) | [Informe Word](./semana-13/GLAB-S13-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-13/README.md) |
+| **Semana 14** | Configuración Centralizada (Config Server) y Patrones de Resiliencia con Resilience4j (Circuit Breaker, Retry, Bulkhead) | [Ver Proyecto Semana 14](./semana-14/) | [Informe Word](./semana-14/GLAB-S14-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx) \| [README](./semana-14/README.md) |
 
 ---
 
@@ -101,3 +102,11 @@
   - Diagnóstico perimetral con Actuator: `/actuator/gateway/routes` y `/actuator/health`.
 - Colección completa de Postman: [`semana-13/postman_collection.json`](./semana-13/postman_collection.json).
 - Documento oficial Word (.docx): [`semana-13/GLAB-S13-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx`](./semana-13/GLAB-S13-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx).
+
+#### 📌 Semana 14: Config Server y Patrones de Resiliencia (Resilience4j)
+- **Configuración Centralizada (`config-server`, Puerto `8888`)** conectada a GitHub (`semana-14/config-repo/`) con perfiles `default`, `dev` y `prod` para los 4 microservicios de dominio (`categoria-service`, `producto-service`, `cliente-service`, `pedido-service`).
+- **Circuit Breaker (`@CircuitBreaker`):** Implementado en `producto-service` (`CategoriaCircuitService`) hacia `categoria-service`, y como **Actividad** en `pedido-service` (`ClienteCircuitService` y `ProductoCircuitService`) hacia `cliente-service` y `producto-service`, con métodos Fallback ante caídas.
+- **Retry Pattern (`@Retry`) y Bulkhead Pattern (`@Bulkhead`):** Implementados en `producto-service` (`categoriaRetry`, `categoriaBulkhead`) y como **Actividad Final** en `pedido-service` (`clienteRetry` con demora simulada de 5s en `cliente-service`, y `productoBulkhead` con `maxConcurrentCalls: 2` y demora simulada de 10s en `producto-service`).
+- **Pruebas reales en ejecución:** Todas las capturas de pantalla (`semana-14/docs/screenshots/`) fueron obtenidas directamente de los 6 microservicios Spring Boot levantados en vivo, incluyendo Dashboard de Eureka, Config Server, Actuator `/actuator/circuitbreakers`, concurrencia real y logs de consola.
+- Colección completa de Postman: [`semana-14/postman_collection.json`](./semana-14/postman_collection.json).
+- Documento oficial Word (.docx): [`semana-14/GLAB-S14-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx`](./semana-14/GLAB-S14-ISRAEL-ANGEL-HUAMAN-HUAMAN.docx).

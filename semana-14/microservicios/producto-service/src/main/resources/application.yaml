@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: producto-service
+  profiles:
+    active: dev
+  config:
+    import: optional:configserver:http://localhost:8888
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,circuitbreakers,retries,bulkheads
+  health:
+    circuitbreakers:
+      enabled: true
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      categoriaService:
+        registerHealthIndicator: true
+        slidingWindowSize: 5
+        minimumNumberOfCalls: 3
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+
+  bulkhead:
+    instances:
+      categoriaBulkhead:
+        maxConcurrentCalls: 2
+        maxWaitDuration: 1s
+
+  retry:
+    instances:
+      categoriaRetry:
+        maxAttempts: 3
+        waitDuration: 2s

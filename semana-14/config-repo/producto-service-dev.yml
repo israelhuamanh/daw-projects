@@ -1,0 +1,13 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: producto-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/bd_producto_dev?createDatabaseIfNotExist=true&useSSL=false
+    username: root
+    password:
+
+empresa:
+  ambiente: desarrollo
